@@ -1,0 +1,5 @@
+let plus_10 a = a + 10 in 
+
+let (|>) v f = f v in 
+  
+10 |> plus_10 |> plus_10 ;;

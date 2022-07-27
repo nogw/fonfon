@@ -83,5 +83,12 @@ evalExpr input = do
       return $ show v
 
 main :: IO ()
-main = evalStateT (evalExpr "let plus_10 a = a + 10 in let (|>) v f = f v in 10 |> plus_10 ;;") initialState
+main = do 
+  res <- parseFile "example/pm.fn"
+  case res of
+    -- Right expr -> evalStateT (evalExpr expr) initialState 
+    Right expr -> print expr 
+    Left err -> print err
+
+-- evalStateT (evalExpr "let plus_10 a = a + 10 in let (|>) v f = f v in 10 |> plus_10 |> plus_10 ;;") initialState
 -- main = evalStateT (evalExpr "let rec fib n = if n < 3 then 1 else fib (n - 1) + fib (n - 2) in fib 10;;") initialState

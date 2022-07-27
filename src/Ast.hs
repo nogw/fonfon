@@ -26,11 +26,25 @@ data Expr
   = Var Var 
   | Int Integer
   | Bool Bool
+  | Tuple [Expr]
+  | Nil
+  | Neg Expr
+  | Cons Expr Expr
   | Lambda Var Expr
   | LetIn TopLevelCmd Expr
   | App Expr Expr
   | Binop Op Expr Expr
   | IfThenElse Expr Expr Expr
+  | Match Expr [(Pattern, Expr)]
+  deriving Show
+
+data Pattern 
+  = PInt Integer 
+  | PBool Bool
+  | PVar Var 
+  | PTuple [Pattern]
+  | PNil 
+  | PCons Pattern Pattern
   deriving Show
 
 data Op 
